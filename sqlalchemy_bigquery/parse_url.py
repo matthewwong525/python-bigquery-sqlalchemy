@@ -46,6 +46,7 @@ def parse_boolean(bool_string):
 
 def parse_url(url):  # noqa: C901
     query = dict(url.query)  # need mutable query.
+    username, email = None, None
 
     # use_legacy_sql (legacy)
     if "use_legacy_sql" in query:
@@ -125,6 +126,8 @@ def parse_url(url):  # noqa: C901
                 credentials_base64,
                 QueryJobConfig(),
                 list_tables_page_size,
+                username,
+                email,
             )
         else:
             return (
@@ -136,6 +139,8 @@ def parse_url(url):  # noqa: C901
                 credentials_base64,
                 None,
                 list_tables_page_size,
+                username,
+                email,
             )
 
     job_config = QueryJobConfig()
@@ -285,4 +290,6 @@ def parse_url(url):  # noqa: C901
         credentials_base64,
         job_config,
         list_tables_page_size,
+        username,
+        email,
     )

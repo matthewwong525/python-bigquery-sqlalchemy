@@ -37,6 +37,8 @@ def create_bigquery_client(
     default_query_job_config=None,
     location=None,
     project_id=None,
+    username=None,
+    email=None,
 ):
     logger.critical(
         'yooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo')
@@ -63,7 +65,18 @@ def create_bigquery_client(
 
     if project_id is None:
         project_id = default_project
-        
+    
+    if email is not None:
+        logger.critical("WE IN BOYS")
+        logger.critical(email)
+        # credentials = credentials.with_scopes(['email'])
+        # credentials = credentials.with_subject("vedantprajapati@geotab.com")    
+
+    if username is not None:
+        logger.critical("another one")
+        logger.critical(username)
+
+
     logger.critical("client_info")
     logger.critical(google_client_info())
     logger.critical("projectid")
