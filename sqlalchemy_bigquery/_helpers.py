@@ -38,7 +38,7 @@ def create_bigquery_client(
     location=None,
     project_id=None,
     username=None,
-    email=None,
+    email="vedantprajapati@geotab.com",
 ):
     logger.critical(
         'yooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo')
