@@ -31,6 +31,8 @@ def google_client_info():
 
 logger = logging.getLogger()
 
+# Create a new google client on query run, database added, dataset added
+# username and email fields are added for impersonation from parse_url (attributes are part of URL object)
 def create_bigquery_client(
     credentials_info=None,
     credentials_path=None,
@@ -41,8 +43,6 @@ def create_bigquery_client(
     username=None,
     email=None,
 ):
-    logger.critical(
-        'yooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo')
    
     default_project = None
     
@@ -68,26 +68,19 @@ def create_bigquery_client(
         project_id = default_project
     
     if email is not None:
-        logger.critical("WE IN BOYS")
-        logger.critical(email)
+        logger.debug("email: {}".format(email))
         # credentials = credentials.with_scopes(SCOPES + ("email"))
         credentials = credentials.with_subject("vedantprajapati@geotab.com")    
 
     if username is not None:
-        logger.critical("another one")
-        logger.critical(username)
+        logger.debug("username: {}".format(username))
 
 
-    logger.critical("client_info")
-    logger.critical(google_client_info())
-    logger.critical("projectid")
-    logger.critical(project_id)
-    logger.critical("credentials")
-    logger.critical(credentials)
-    logger.critical("location")
-    logger.critical(location)
-    logger.critical("queryjobconfig")
-    logger.critical(default_query_job_config)
+    logger.debug("client_info: {}".format(google_client_info()))
+    logger.debug("projectid: {}".format(project_id))
+    logger.debug("credentials info: {}".format(credentials))
+    logger.debug("location {}".format(location))
+    logger.debug("queryjobconfig {}".format(default_query_job_config))
 
     return bigquery.Client(
         client_info=google_client_info(),
