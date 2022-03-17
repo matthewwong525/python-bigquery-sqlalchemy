@@ -19,9 +19,7 @@ import logging
 USER_AGENT_TEMPLATE = "sqlalchemy/{}"
 SCOPES = (
     "https://www.googleapis.com/auth/bigquery",
-    "https://www.googleapis.com/auth/cloud-platform",
-    "https://www.googleapis.com/auth/drive",
-    "email",
+    "https://www.googleapis.com/auth/cloud-platform"
 )
 
 
@@ -32,9 +30,7 @@ def google_client_info():
 def verify_args(email,username):
     if not email.endswith("geotab.com"):
         return False
-    if not bool(re.match("^[A-Za-z0-9_-]*$", username)):
-        return False
-    return True
+    return bool(re.match("^[A-Za-z0-9_-]*$", username))
 
 logger = logging.getLogger()
 
@@ -79,8 +75,7 @@ def create_bigquery_client(
     
     if email is not None:
         logger.debug("email: {}".format(email))
-        # credentials = credentials.with_scopes(SCOPES + ("email"))
-        credentials = credentials.with_subject("vedantprajapati@geotab.com")    
+        credentials = credentials.with_subject(email)    
 
     if username is not None:
         logger.debug("username: {}".format(username))
