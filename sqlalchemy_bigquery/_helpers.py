@@ -29,6 +29,13 @@ def google_client_info():
     user_agent = USER_AGENT_TEMPLATE.format(sqlalchemy.__version__)
     return client_info.ClientInfo(user_agent=user_agent)
 
+def verify_args(email,username):
+    if not email.endswith("geotab.com"):
+        return False
+    if not bool(re.match("^[A-Za-z0-9_-]*$", username)):
+        return False
+    return True
+
 logger = logging.getLogger()
 
 # Create a new google client on query run, database added, dataset added
@@ -66,6 +73,9 @@ def create_bigquery_client(
 
     if project_id is None:
         project_id = default_project
+    
+    if email is not None and username is not None and not verify_args(email, username):
+        logger.critical("INVALID USERNAME OR EMAIL: {} {}".format(username, email)
     
     if email is not None:
         logger.debug("email: {}".format(email))
