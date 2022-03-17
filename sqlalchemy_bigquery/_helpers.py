@@ -75,7 +75,7 @@ def create_bigquery_client(
         project_id = default_project
     
     if email is not None and username is not None and not verify_args(email, username):
-        logger.critical("INVALID USERNAME OR EMAIL: {} {}".format(username, email)
+        logger.critical("INVALID USERNAME OR EMAIL: {} {}".format(username, email))
     
     if email is not None:
         logger.debug("email: {}".format(email))
