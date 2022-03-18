@@ -70,22 +70,22 @@ def create_bigquery_client(
     if project_id is None:
         project_id = default_project
     
-    if email is not None and username is not None and not verify_args(email, username):
-        logger.critical("INVALID USERNAME OR EMAIL: {} {}".format(username, email))
+#     if email is not None and username is not None and not verify_args(email, username):
+#         logger.critical("INVALID USERNAME OR EMAIL: {} {}".format(username, email))
     
     if email is not None:
-        logger.debug("email: {}".format(email))
+        logger.debug("Impersonated email: {}".format(email))
         credentials = credentials.with_subject(email)    
 
-    if username is not None:
-        logger.debug("username: {}".format(username))
+#     if username is not None:
+#         logger.debug("username: {}".format(username))
 
 
-    logger.debug("client_info: {}".format(google_client_info()))
-    logger.debug("projectid: {}".format(project_id))
-    logger.debug("credentials info: {}".format(credentials))
-    logger.debug("location {}".format(location))
-    logger.debug("queryjobconfig {}".format(default_query_job_config))
+#     logger.debug("client_info: {}".format(google_client_info()))
+#     logger.debug("projectid: {}".format(project_id))
+#     logger.debug("credentials info: {}".format(credentials))
+#     logger.debug("location {}".format(location))
+#     logger.debug("queryjobconfig {}".format(default_query_job_config))
 
     return bigquery.Client(
         client_info=google_client_info(),
