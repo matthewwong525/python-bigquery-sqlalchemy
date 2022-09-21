@@ -162,10 +162,13 @@ def parse_url(url):  # noqa: C901
                 "invalid create_disposition in url query: " + create_disposition
             )
 
+    if "default_dataset" in query:
+      job_config.default_dataset = query["default_dataset"]
+
     # default_dataset
-    if "default_dataset" in query or "dataset_id" in query or "project_id" in query:
+    if "dataset_id" in query or "project_id" in query:
         raise ValueError(
-            "don't pass default_dataset, dataset_id, project_id in url query, instead use the url host and database"
+            "don't pass dataset_id, project_id in url query, instead use the url host and database"
         )
 
     # destination
